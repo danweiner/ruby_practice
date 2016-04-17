@@ -1,4 +1,5 @@
 # Simple text adventure game
+
 def create_room
   "You are in a #{size} #{color} #{room_type}.  There is an exit on the #{direction} wall."
 end

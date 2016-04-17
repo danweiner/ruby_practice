@@ -1,4 +1,6 @@
 # Experiment with ASCII art shapes
+
+
 def rectangle(height, width, outside_letter, inside_letter)
   #rectangle code will go here
   1.upto(height) do |row|
