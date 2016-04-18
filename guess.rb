@@ -120,13 +120,16 @@ class Game
   end
 
   def print_final_score 
+    puts "You took #{@player.total_guess_count} total guesses"
     puts "Final score for #{@player.name} is #{@player.score}"
   end
 
-  def quit_game?
-    player_input = @player.quit
-    if player_input == "q"
-      return true
+  def quit_game
+    actions = ["q - quit"]
+    puts "If you would like to leave the game, press #{actions}"
+    if ( @player.quit == "q" )
+      puts "Goodbye, thank you for playing"
+      @round > TOTAL_ROUNDS
     end
   end
 
@@ -145,6 +148,7 @@ class Player
     @total_guess_count          = 0
     @high_number                = 0
     @current_guess              = 0
+    @total_number_of_guesses    = 0
     @current_number_of_guesses  = 0
   end
 
@@ -176,6 +180,10 @@ class Player
     @current_number_of_guesses
   end
 
+  def total_guess_count
+    @total_number_of_guesses
+  end
+
   def add_score(points)
     @score += points
   end
@@ -185,6 +193,7 @@ class Player
   end
 
   def get_total_guess_count
+    @total_number_of_guesses += 1
     @total_guess_count = gets.to_i
   end
 
@@ -212,12 +221,11 @@ game = Game.new(player)
 
 
 while !game.done? do
-  actions = ["q - quit"]
   puts ""
   puts "------> round ##{game.round}"
   puts ""
-  puts "If you would like to leave the game, press #{actions}"
 
+  
   if game.get_high_number
     if game.get_guess_count
       game.prepare_computer_number
@@ -227,11 +235,8 @@ while !game.done? do
         game.show_results
       end
       game.next_round
+      game.quit_game
     end
-  end
-
-  if game.quit_game?
-    break
   end
 end
 
