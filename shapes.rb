@@ -65,31 +65,77 @@ def right_triangle(height, outside_letter, inside_letter)
     end
   end
 end
+
+def triangle_simple(height, letter)
+  1.upto(height) do |row|
+    print " " * (height - row)
+    if row == 1
+      puts "#{letter * 2}"
+    elsif row == height
+      puts letter * height * 2
+    else
+      middle = letter * (row - 1)
+      print "#{letter}#{middle}"
+      puts "#{middle}#{letter}"
+    end
+  end
+end
+
+def diamond(width)
+  1.upto(width) do |row|
+    no_of_spaces = width - row
+    no_of_stars = row
+    puts " " * no_of_spaces + "* " * no_of_stars  
+  end
+  (width + 1).upto(width * 2) do |row|
+    no_of_spaces = row - width
+    no_of_stars = 2 * width - row
+    puts " " * no_of_spaces + "* " * no_of_stars
+  end
+end
+
+def inverted_diamond(width)
+  0.upto(width) do |row|
+    no_of_stars = width - row
+    no_of_spaces = row * 2
+    print "* " * no_of_stars + " " * no_of_spaces
+    puts " " * no_of_spaces + "* " * no_of_stars
+    
+  end
+  (width + 1).upto(width * 2) do |row|
+    no_of_stars = row - width
+    no_of_spaces = 2 * width - row 
+    print "* " * no_of_stars + " " * no_of_spaces 
+    puts " " * no_of_spaces + "* " * no_of_stars 
+  end
+end
+
+
+
 puts "Welcome to shapes"
 
-print "How big do you want your shape? "
+# print "How big do you want your shape? "
 
-shape_size = gets.chomp
+# shape_size = gets.chomp
 
-print "Outside letter: "
 
-outside_letter = gets.chomp
 
-print "Inside letter: "
+# print "Inside letter: "
 
-inside_letter = gets.chomp
+# inside_letter = gets.chomp
 
 puts "About to draw a shape #{shape_size} big"
-puts "using #{outside_letter} for the edge"
-puts "and #{inside_letter} for the inside"
+# puts "using #{outside_letter} for the edge"
+# puts "and #{inside_letter} for the inside"
 
 height = shape_size.to_i
 width = shape_size.to_i
 
+# inverted_diamond(width)
 
-triangle(height, outside_letter, inside_letter)
-rectangle(height, width * 2, outside_letter, inside_letter)
-right_triangle(height, outside_letter, inside_letter)
-flipped_triangle(height, outside_letter, inside_letter)
+fibonacci(0)
+
+
+
 
 

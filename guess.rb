@@ -131,6 +131,7 @@ class Game
       puts "Goodbye, thank you for playing"
       @round > TOTAL_ROUNDS
     end
+    true
   end
 
 end
@@ -139,6 +140,10 @@ class Player
   # Player class code goes here
   def initialize(name)
     @name   = name
+    if @name == "quit"
+      puts "Thanks for playing"
+      exit
+    end
     @score  = 0
     @player_action = ""
     prepare_for_new_round
@@ -235,7 +240,8 @@ while !game.done? do
         game.show_results
       end
       game.next_round
-      game.quit_game
+      if game.quit_game
+      end
     end
   end
 end
