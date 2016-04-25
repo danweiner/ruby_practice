@@ -50,6 +50,7 @@ class Game
     draw_hud
   end
 
+  # This method changes what it draws depending on whether the level is over (player has reached the exit)
   def draw_hud
     if @level.level_over?
       @font.draw("GAME OVER!", 170, 150, 10, 2, 2)
