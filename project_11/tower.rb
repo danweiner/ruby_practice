@@ -13,6 +13,18 @@ class Tower < Gosu::Window
     @game = Game.new(self)
   end
 
+  def needs_cursor?
+    true
+  end
+
+  def button_down(id)
+    @game.button_down(id)
+  end
+
+  def draw
+    @game.draw
+  end
+
 end
 
 window = Tower.new
