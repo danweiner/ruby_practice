@@ -2,6 +2,9 @@ require 'gosu'
 require_relative 'cell'
 
 class Grid
+
+  # This allows other pats of the program to loop through
+  # the contents just like any other built-in Ruby container
   include Enumerable
 
   def initialize(window, columns, rows, seeds=nil)
@@ -45,6 +48,58 @@ class Grid
   end
 
   def draw
-    
+    each do |grid_cell|
+      if grid_cell
+        grid_cell.draw
+      end
+    end
+  end
+
+  def each
+    @total_rows.times do |row|
+      @total_columns.times do |col|
+        yield cell(col, row)
+      end
+    end
+  end
+
+  def each_cell_position
+    @total_rows.times do |row|
+      @total_columns.times do |col|
+        yield col, row
+      end
+    end
+  end
+
+  def lifeless?
+    # this method comes from Enumerable
+    none? do |cell|
+      cell.alive?
+    end
+  end
+
+  def life
+    living_cells = []
+    each_cell_position do |x, y|
+      living_cells << [x,y] if cell(x,y).alive?
+    end
+    living_cells
+  end
+
+  def surrounding_cells(x, y)
+    cells = []
+    (y - 1).upto(y + 1) do |row|
+      (x - 1).upto(x + 1) do |column|
+        next if row < 0 || row >= @total_rows
+        next if column < 0 || column >= @total_columns
+        next if x == column && y == row
+        cells << cell(column,row)
+      end
+    end
+    cells.compact
+  end
+
+  def ==(other)
+    self.life == other.life
   end
 end

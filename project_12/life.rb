@@ -27,7 +27,7 @@ end
 puts "Welcome to the Game of Life"
 print "How many generations? (0 for infinite) "
 generations = gets.to_i
-print = "Pick a simulation (1-5) "
+print "Pick a simulation (1-5) "
 sim = gets.to_i
 
 window = Life.new(generations, sim)
