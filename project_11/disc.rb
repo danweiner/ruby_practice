@@ -26,7 +26,6 @@ class Disc
       @x, @y, @color,
       @x + @width, @y, @color,
       @x + @width, @y + @height, @color,
-      @x, @y + @height, @color
-      )
+      @x, @y + @height, @color)
   end
 end
