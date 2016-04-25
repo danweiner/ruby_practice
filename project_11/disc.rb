@@ -27,7 +27,7 @@ class Disc
   def draw
     if @post
       @x = @post.center - @width / 2
-      position = @post.find_disc_positon(self)
+      position = @post.find_disc_position(self)
       if position
         if @selected
           c = @selected_color
